@@ -1,0 +1,249 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #f7f6f3;
+  --bg-2: #f1efea;
+  --panel: #ffffff;
+  --panel-2: #faf9f6;
+  --line: rgba(23, 32, 42, 0.08);
+  --line-2: rgba(23, 32, 42, 0.14);
+  --text: #1b2430;
+  --muted: #5b6572;
+  --faint: #8b94a0;
+  --accent: #0f766e;
+  --accent-dim: rgba(15, 118, 110, 0.08);
+  --ok: #15803d;
+  --warn: #b45309;
+  --bad: #b91c1c;
+  --idle: #64748b;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-2: var(--bg-2);
+  --color-panel: var(--panel);
+  --color-panel-2: var(--panel-2);
+  --color-line: var(--line);
+  --color-line-2: var(--line-2);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-accent: var(--accent);
+  --color-ok: var(--ok);
+  --color-warn: var(--warn);
+  --color-bad: var(--bad);
+  --color-idle: var(--idle);
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-grotesk);
+  --font-mono: var(--font-jetbrains);
+}
+
+html,
+body {
+  background: var(--bg);
+  color: var(--text);
+}
+
+body {
+  font-family: var(--font-inter), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(23, 32, 42, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(23, 32, 42, 0.035) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.micro {
+  font-family: var(--font-jetbrains), ui-monospace, monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+::selection {
+  background: var(--accent-dim);
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+*::-webkit-scrollbar-thumb {
+  background: rgba(23, 32, 42, 0.15);
+  border-radius: 8px;
+}
+
+@keyframes pulse-dot {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+.pulse-dot {
+  animation: pulse-dot 1.1s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pulse-dot {
+    animation: none;
+  }
+}
+
+.maplibregl-popup-content {
+  background: var(--panel) !important;
+  color: var(--text);
+  border: 1px solid var(--line-2);
+  border-radius: 8px !important;
+  box-shadow: 0 8px 24px rgba(23, 32, 42, 0.12) !important;
+  font-size: 12px;
+}
+.maplibregl-popup-tip {
+  display: none;
+}
+.maplibregl-ctrl-group {
+  background: var(--panel) !important;
+  border: 1px solid var(--line);
+}
+
+.maplibregl-ctrl-attrib {
+  display: none;
+}
+
+/* landing hero */
+@keyframes parcel-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.hero-field {
+  animation: parcel-in 1.4s ease-out both;
+}
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.rise {
+  animation: rise 0.7s ease-out both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-field,
+  .rise {
+    animation: none;
+  }
+}
+
+/* India map city markers (DOM markers — no glyph server) */
+.india-marker {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 3px 6px 3px 3px;
+}
+.india-marker .dot {
+  position: relative;
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: #8b94a0;
+  border: 2px solid #ffffff;
+  box-shadow: 0 1px 3px rgba(23, 32, 42, 0.3);
+  flex: none;
+}
+.india-marker[data-status="demo"] .dot {
+  background: #0f766e;
+  width: 13px;
+  height: 13px;
+}
+.india-marker[data-status="validation"] .dot {
+  background: #ffffff;
+  border-color: #0f766e;
+}
+.india-marker .label {
+  font-size: 11.5px;
+  font-weight: 550;
+  color: #3c4653;
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(23, 32, 42, 0.1);
+  border-radius: 6px;
+  padding: 1.5px 6px;
+  white-space: nowrap;
+  backdrop-filter: blur(2px);
+}
+.india-marker[data-status="demo"] .label {
+  color: #0f766e;
+  border-color: rgba(15, 118, 110, 0.35);
+  font-weight: 650;
+}
+.india-marker:hover .label,
+.india-marker.selected .label {
+  border-color: #0f766e;
+  color: #0f766e;
+}
+.dot-pulse::after {
+  content: "";
+  position: absolute;
+  inset: -7px;
+  border-radius: 999px;
+  border: 2px solid rgba(15, 118, 110, 0.5);
+  animation: india-pulse 2s ease-out infinite;
+}
+@keyframes india-pulse {
+  0% {
+    transform: scale(0.5);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.25);
+    opacity: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dot-pulse::after {
+    animation: none;
+    opacity: 0.4;
+  }
+}
+
+.hero-ping {
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: india-pulse 2.2s ease-out infinite;
+}
+.hero-link {
+  stroke-dashoffset: 36;
+  animation: link-flow 5s linear infinite;
+}
+@keyframes link-flow {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-ping,
+  .hero-link {
+    animation: none;
+  }
+}
