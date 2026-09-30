@@ -31,6 +31,7 @@ class Settings(BaseSettings):
     "http://localhost:3000",
     "http://127.0.0.1:3000",
     "https://frontend-five-xi-yf39m2xu4.vercel.app",
+    "https://frontend-five-xi-yf39m2xuu4.vercel.app"
 ]
 
 
