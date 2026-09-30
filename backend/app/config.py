@@ -27,7 +27,11 @@ class Settings(BaseSettings):
     }
     high_threshold: float = 0.85
     review_threshold: float = 0.60
-    cors_origins: list[str] = ["http://localhost:3000", "http://127.0.0.1:3000"]
+    cors_origins: list[str] = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "https://frontend-five-xi-yf39m2xu4.vercel.app",
+]
 
 
 settings = Settings()
